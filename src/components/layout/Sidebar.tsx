@@ -1,12 +1,7 @@
 import { cn } from "../../lib/utils"
 import {
   LayoutDashboard,
-  Timer,
-  History,
   Settings,
-  BarChart3,
-  Clock,
-  Bell,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react"

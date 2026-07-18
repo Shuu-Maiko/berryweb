@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { ArrowRight, Activity, Clock, CheckCircle, Zap, Code, ShieldCheck, ChevronRight } from "lucide-react"
+import { ArrowRight, Activity, Clock, CheckCircle, Zap, Code, ShieldCheck } from "lucide-react"
 
 
 

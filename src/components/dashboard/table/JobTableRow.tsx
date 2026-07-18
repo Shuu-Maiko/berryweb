@@ -1,6 +1,5 @@
 import { Terminal, Globe, MoreHorizontal, Info, Trash2 } from "lucide-react"
 import { cn } from "../../../lib/utils"
-import { getNextRun } from "../../../utils/cron.utils"
 import { getRelativeTime } from "../../../utils/date.utils"
 import { Dropdown } from "../../ui/Dropdown"
 import type { Job } from "../../../types/job.types"

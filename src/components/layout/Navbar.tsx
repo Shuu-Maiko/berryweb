@@ -1,8 +1,5 @@
 import { Moon, Sun, FileText } from "lucide-react"
-import { cn } from "../../lib/utils"
 import { Dropdown } from "../ui/Dropdown"
-import { Logo } from "../ui/Logo"
-import { useState } from "react"
 import { authService } from "../../services/auth.service"
 
 type NavbarProps = {
@@ -12,17 +9,6 @@ type NavbarProps = {
 }
 
 export function Navbar({ darkMode, onToggleDarkMode, onTabSelect }: NavbarProps) {
-  const [activeNav, setActiveNav] = useState("Dashboard")
-  
-  const navItems = [
-    "Dashboard",
-    "Cron Jobs",
-    "Executions",
-    "Metrics",
-    "Schedules",
-    "Alerts",
-    "Settings"
-  ]
 
   return (
     <header className="sticky top-0 z-20 flex h-14 w-full items-center justify-between border-b border-border bg-surface px-6 md:px-8 backdrop-blur-sm">

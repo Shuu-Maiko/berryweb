@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Info, Activity, Clock, Server, CheckCircle2, XCircle } from "lucide-react"
+import { Info, Activity, Clock, Server, CheckCircle2 } from "lucide-react"
 import { Spinner } from "../ui/Spinner"
 import { jobService } from "../../services/job.service"
 import {
@@ -397,7 +397,7 @@ export function JobDetailsModal({ secureJobId, onClose }: JobDetailsModalProps) 
                             contentStyle={{ backgroundColor: '#111', borderColor: '#333', borderRadius: '8px', padding: '10px 14px' }}
                             labelStyle={{ color: '#aaa', fontSize: '11px', fontWeight: 'bold', marginBottom: '4px' }}
                             itemStyle={{ fontSize: '12px', fontWeight: 'bold', color: '#fff' }}
-                            formatter={(value: number, name: string, props: any) => [`${props.payload.duration} ms`, 'Duration']}
+                            formatter={(_value: any, _name: any, props: any) => [`${props.payload.duration} ms`, 'Duration']}
                             labelFormatter={(label, payload) => {
                               if (payload && payload.length > 0) {
                                 return payload[0].payload.date

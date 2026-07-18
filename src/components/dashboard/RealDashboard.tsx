@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { AppShell } from "../layout/AppShell"
-import { Plus, Activity } from "lucide-react"
+import { Plus } from "lucide-react"
 import { EmptyState } from "./EmptyState"
 import { JobsRegistryTable } from "./JobsRegistryTable"
 import { CreateJobModal } from "./CreateJobModal"

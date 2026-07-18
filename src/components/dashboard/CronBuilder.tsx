@@ -42,12 +42,8 @@ export function CronBuilder({ onExpressionChange, className }: CronBuilderProps)
     const now = new Date()
 
     try {
-      const parts = generatedCron.trim().split(/\s+/)
-      const hasSeconds = parts.length === 6
-
       const interval = CronExpressionParser.parse(generatedCron, {
         currentDate: now,
-        hasSeconds,
       })
 
       for (let i = 0; i < 5; i++) {

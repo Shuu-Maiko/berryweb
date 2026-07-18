@@ -8,13 +8,10 @@ export function getNextRun(cron: string): string {
   if (!cron) return "-"
 
   let normalizedCron = cron.trim()
-  const parts = normalizedCron.split(/\s+/)
-  const hasSeconds = parts.length === 6
 
   try {
     const interval = CronExpressionParser.parse(normalizedCron, {
       currentDate: new Date(),
-      hasSeconds,
     })
     const nextVal = interval.next()
     const nextDate = (nextVal && typeof nextVal.toDate === "function")
