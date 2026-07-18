@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { AppShell } from "./components/layout/AppShell"
 import { DemoPage } from "./components/DemoPage"
 import { LoginPage } from "./components/auth/LoginPage"
@@ -7,63 +7,69 @@ import { OAuthRedirectHandler } from "./components/auth/OAuthRedirectHandler"
 import { RealDashboard } from "./components/dashboard/RealDashboard"
 import { LandingPage } from "./components/LandingPage"
 
-const getInitialRoute = () => {
-  const path = window.location.pathname
-  if (path === "/oauth2/redirect") return "oauth2-redirect"
-  if (path.startsWith("/login")) return "login"
-  if (path.startsWith("/signup")) return "signup"
-  if (path.startsWith("/demo")) return "demo"
-  if (path.startsWith("/dashboard")) return "dashboard"
-  return "landing"
+// Private Route Guard (Requires authentication)
+function PrivateRoute({ children }: { children: React.ReactNode }) {
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true"
+  return isAuthenticated ? <>{children}</> : <Navigate to="/login" replace />
+}
+
+// Public Route Guard (Prevents logged-in users from accessing login/signup)
+function PublicRoute({ children }: { children: React.ReactNode }) {
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true"
+  return isAuthenticated ? <Navigate to="/dashboard" replace /> : <>{children}</>
 }
 
 export default function App() {
-  const [currentRoute, setCurrentRoute] = useState<string>(getInitialRoute)
+  return (
+    <BrowserRouter>
+      <Routes>
+        {/* Public Landing Page */}
+        <Route path="/" element={<LandingPage />} />
 
-  useEffect(() => {
-    const handleNavigation = () => {
-      setCurrentRoute(getInitialRoute())
-    }
+        {/* Auth Routes protected from logged-in users */}
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <PublicRoute>
+              <SignupPage />
+            </PublicRoute>
+          }
+        />
 
-    handleNavigation()
-    window.addEventListener("popstate", handleNavigation)
-    // Listen for path redirects
-    return () => window.removeEventListener("popstate", handleNavigation)
-  }, [])
+        {/* OAuth Redirect Handler */}
+        <Route path="/oauth2/redirect" element={<OAuthRedirectHandler />} />
 
-  if (currentRoute === "dashboard") {
-    const isAuthenticated = localStorage.getItem("isAuthenticated")
-    if (!isAuthenticated) {
-      window.location.href = "/login"
-      return null
-    }
-    return <RealDashboard />
-  }
+        {/* Protected Dashboard Console */}
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <RealDashboard />
+            </PrivateRoute>
+          }
+        />
 
-  if (["login", "signup"].includes(currentRoute)) {
-    const isAuthenticated = localStorage.getItem("isAuthenticated")
-    if (isAuthenticated) {
-      window.location.href = "/dashboard"
-      return null
-    }
-  }
+        {/* Demo View */}
+        <Route
+          path="/demo"
+          element={
+            <AppShell>
+              <DemoPage />
+            </AppShell>
+          }
+        />
 
-  switch (currentRoute) {
-    case "landing":
-      return <LandingPage />
-    case "login":
-      return <LoginPage />
-    case "signup":
-      return <SignupPage />
-    case "oauth2-redirect":
-      return <OAuthRedirectHandler />
-    case "demo":
-      return (
-        <AppShell>
-          <DemoPage />
-        </AppShell>
-      )
-    default:
-      return <LandingPage />
-  }
+        {/* Fallback all invalid routes to Landing Page */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }

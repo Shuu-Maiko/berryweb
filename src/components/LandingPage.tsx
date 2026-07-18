@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { ArrowRight, Activity, Clock, CheckCircle, Zap, Code, ShieldCheck } from "lucide-react"
 
 
 
 export function LandingPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const navigate = useNavigate()
   
   useEffect(() => {
     setIsAuthenticated(localStorage.getItem("isAuthenticated") === "true")
   }, [])
 
   const navigateToApp = () => {
-    window.location.href = isAuthenticated ? "/dashboard" : "/login"
+    navigate(isAuthenticated ? "/dashboard" : "/login")
   }
 
   return (

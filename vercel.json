@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!assets/|favicon.svg).*)/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/((?!assets/|favicon.svg).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
