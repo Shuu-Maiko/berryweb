@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,600;1,600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --canvas: #fcfcfd;
+  --surface: #ffffff;
+  --surface-elevated: #f9fafb;
+  --border: #eaecf0;
+  
+  --primary: #099250;
+  --primary-hover: #087440;
+  
+  --accent: #101828;
+  --accent-hover: #1d2939;
+  
+  --text-primary: #101828;
+  --text-secondary: #475467;
+  --text-muted: #98a2b3;
+  
+  --success: #099250;
+  --success-bg: #edfdf3;
+  --warning: #dc6803;
+  --warning-bg: #fffaeb;
+  --error: #d92d20;
+  --error-bg: #fef3f2;
+  --info: #1570ef;
+  --info-bg: #eff8ff;
+  
+  --sidebar: #ffffff;
+  --sidebar-hover: #f9fafb;
+  --sidebar-active: #edfdf3;
+
+  /* LiveKit Style variables (Dark Mode Base) */
+  --glow-emerald: rgba(34, 197, 94, 0.15);
+  --glow-emerald-strong: rgba(34, 197, 94, 0.3);
+}
+
+.dark {
+  --canvas: #0b0b0a;
+  --surface: #121211;
+  --surface-elevated: #1a1a19;
+  --border: #262624;
+  --primary: #22c55e;
+  --primary-hover: #4ade80;
+  --accent: #f3f4f6;
+  --accent-hover: #ffffff;
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --success: #22c55e;
+  --success-bg: #052e16;
+  --warning: #eab308;
+  --warning-bg: #422006;
+  --error: #f43f5e;
+  --error-bg: #4c0519;
+  --info: #3b82f6;
+  --info-bg: #172554;
+  --sidebar: #121211;
+  --sidebar-hover: #1a1a19;
+  --sidebar-active: #052e16;
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Fira Code", monospace;
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-error: var(--error);
+  --color-error-bg: var(--error-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-hover: var(--sidebar-hover);
+  --color-sidebar-active: var(--sidebar-active);
+
+  /* LiveKit Style mappings */
+  --color-glow-emerald: var(--glow-emerald);
+  --color-glow-emerald-strong: var(--glow-emerald-strong);
+
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-up: slide-up 0.4s ease-out;
+  --animate-scale-in: scale-in 0.2s ease-out;
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+  --animate-spin-slow: spin 1.5s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite alternate;
+  --animate-marquee: marquee 25s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse-glow {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.1); opacity: 0.8; }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Brutalist Block Shadows */
+.shadow-brutal {
+  box-shadow: 4px 4px 0px 0px rgba(34, 197, 94, 1);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.shadow-brutal:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px rgba(34, 197, 94, 1);
+}
+
+.shadow-brutal:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px rgba(34, 197, 94, 1);
+}
+
+.shadow-brutal-white {
+  box-shadow: 4px 4px 0px 0px rgba(255, 255, 255, 1);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Background Grids & Dots mesh utilities */
+.bg-grid-mesh {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+.bg-dot-grid {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+/* Global Brutalist Styles for Landing Page + Dashboard Consistency */
+.rounded-xl, .rounded-lg, .rounded-md, .rounded-sm, .rounded, .rounded-2xl, .rounded-3xl {
+  border-radius: 0px !important;
+}
+
+body, button, input, select, textarea {
+  font-family: var(--font-mono) !important;
+}
+
+/* Override dark mode colors for pitch-black brutalist dashboard */
+.dark {
+  --canvas: #000000 !important;
+  --surface: #000000 !important;
+  --surface-elevated: #000000 !important;
+  --border: rgba(255, 255, 255, 0.15) !important;
+  --primary: #22c55e !important;
+  --primary-hover: #4ade80 !important;
+  --text-primary: #ffffff !important;
+  --text-secondary: #a3a3a3 !important;
+  --text-muted: #525252 !important;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
