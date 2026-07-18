@@ -5,8 +5,8 @@
       "destination": "https://berry-oy9z.onrender.com/api/:path*"
     },
     {
-      "source": "/oauth2/:path*",
-      "destination": "https://berry-oy9z.onrender.com/oauth2/:path*"
+      "source": "/oauth2/authorization/:path*",
+      "destination": "https://berry-oy9z.onrender.com/oauth2/authorization/:path*"
     },
     {
       "source": "/login/oauth2/code/:path*",
