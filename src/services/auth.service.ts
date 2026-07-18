@@ -9,6 +9,9 @@ export const authService = {
   async login(email: string, password: string): Promise<any> {
     const response = await apiClient.post("/api/auth/login", { email, password })
     localStorage.setItem("isAuthenticated", "true")
+    if (response.data.token) {
+      localStorage.setItem("auth_token", response.data.token)
+    }
     return response.data
   },
 
@@ -19,6 +22,7 @@ export const authService = {
       // Ignore failures on logout notification to prevent blocking client logout
     } finally {
       localStorage.removeItem("isAuthenticated")
+      localStorage.removeItem("auth_token")
       window.location.href = "/login"
     }
   },

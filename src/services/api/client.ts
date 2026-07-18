@@ -10,12 +10,22 @@ export const apiClient = axios.create({
   },
 })
 
+// Global Request Interceptor to attach token (used for OAuth cross-domain support)
+apiClient.interceptors.request.use((config) => {
+  const token = localStorage.getItem("auth_token")
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
+
 // Global Response Interceptor for handling Auth Expirations
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
       localStorage.removeItem("isAuthenticated")
+      localStorage.removeItem("auth_token")
       // Do not redirect if we are already on login or signup
       const path = window.location.pathname
       if (path !== "/login" && path !== "/signup") {

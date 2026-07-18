@@ -7,9 +7,11 @@ export function OAuthRedirectHandler() {
     // The backend redirect might include a success param or we just assume success if we land here
     // But usually OAuth redirect means success if no error param.
     const error = urlParams.get("error")
+    const token = urlParams.get("token")
 
-    if (!error) {
+    if (!error && token) {
       localStorage.setItem("isAuthenticated", "true")
+      localStorage.setItem("auth_token", token)
       window.location.href = window.location.origin + "/dashboard"
     } else {
       console.error("OAuth login failed")
