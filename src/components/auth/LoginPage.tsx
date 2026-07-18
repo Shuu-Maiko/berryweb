@@ -16,7 +16,7 @@ export function LoginPage() {
     setErrorMsg("")
     try {
       await authService.login(email, password)
-      window.location.href = "/"
+      window.location.href = "/dashboard"
     } catch (err: any) {
       setErrorMsg(err.message || "Invalid credentials.")
     } finally {

@@ -10,7 +10,7 @@ export function OAuthRedirectHandler() {
 
     if (!error) {
       localStorage.setItem("isAuthenticated", "true")
-      window.location.href = window.location.origin + "/"
+      window.location.href = window.location.origin + "/dashboard"
     } else {
       console.error("OAuth login failed")
       window.location.href = window.location.origin + "/login"

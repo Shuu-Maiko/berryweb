@@ -35,7 +35,7 @@ export function LandingPage() {
           </div>
 
           <nav className="hidden md:flex items-center gap-8 text-sm font-bold tracking-widest uppercase text-white/70">
-            <a href="#overview" className="hover:text-emerald-500 hover:bg-white/5 px-2 py-1 transition-none">Docs</a>
+            <a href="https://github.com/Shuu-Maiko/berry" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-500 hover:bg-white/5 px-2 py-1 transition-none">Docs</a>
             <a href="#pricing" className="hover:text-emerald-500 hover:bg-white/5 px-2 py-1 transition-none">Pricing</a>
           </nav>
 
@@ -75,9 +75,9 @@ export function LandingPage() {
             START BUILDING
             <ArrowRight className="h-5 w-5" />
           </button>
-          <button className="flex h-16 w-full sm:w-auto items-center justify-center gap-3 border-2 border-white bg-white px-10 text-lg font-black text-black uppercase tracking-widest shadow-brutal-white hover:bg-black hover:text-white hover:border-white transition-none">
+          <a href="https://github.com/Shuu-Maiko/berry" target="_blank" rel="noopener noreferrer" className="flex h-16 w-full sm:w-auto items-center justify-center gap-3 border-2 border-white bg-white px-10 text-lg font-black text-black uppercase tracking-widest shadow-brutal-white hover:bg-black hover:text-white hover:border-white transition-none text-center">
             READ DOCS
-          </button>
+          </a>
         </div>
       </main>
 
